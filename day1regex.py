@@ -1,19 +1,5 @@
-import regex as re
+import re
 from utils import read_to_array
-
-lines = read_to_array('data/day1.txt')
-
-def line_to_int(line: str) -> int:
-    if len(line) > 2:
-        line = f'{line[0]}{line[-1]}'
-
-    if len(line) == 1:
-        line = f'{line[0]}{line[0]}'
-
-    if len(line) == 0:
-        line = 0
-
-    return int(line)
 
 def word_to_int(word: str) -> int:
     match word:
@@ -38,11 +24,12 @@ def word_to_int(word: str) -> int:
         case _:
             raise ValueError()
 
-pattern = r'(one|two|three|four|five|six|seven|eight|nine|[1-9])'
+lines = read_to_array('data/day1.txt')
+pattern = r'(?=(one|two|three|four|five|six|seven|eight|nine|[1-9]))'
 sum = 0
 
 for line in lines:
-    digits = re.findall(pattern, line, overlapped=True)
+    digits = re.findall(pattern, line)
     sum += int(f'{word_to_int(digits[0])}{word_to_int(digits[-1])}')
         
 print(sum)
