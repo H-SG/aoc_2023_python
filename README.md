@@ -11,3 +11,9 @@ I also decided to see if I could use regex to solve this, I cheated a little by 
 
 ## Day 2
 Is it premature to break out some classes for this? This was a nice and easy one, or at least I was lucky enough with my initial approach that it was a trivial addition to get part 2.
+
+## Day 3
+Wow this is ugly, I tried being lazy by not splitting it up into an array, and now I pay for my hubris. Sub-substring matches are a pain. First submission is sphaghet, I'll see if I can make it prettier some time
+
+### Regex Redux
+Again it really feels like Regexs are the way to go. I've cleaned up a bit without changing my original approach, I don't *think* I can eliminate more for loops, but I don't want to spend more time on this now
