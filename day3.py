@@ -49,4 +49,4 @@ for line_index, line in enumerate(lines):
             gear_ratio_sum += match_digits[0] * match_digits[1]
 
 print(f'Day 3 - Part 1: {sum(valid_digits)}')
-print(f'Day 4 - Part 2: {gear_ratio_sum}')
+print(f'Day 3 - Part 2: {gear_ratio_sum}')
