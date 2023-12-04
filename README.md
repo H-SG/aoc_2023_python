@@ -17,3 +17,6 @@ Wow this is ugly, I tried being lazy by not splitting it up into an array, and n
 
 ### Regex Redux
 Again it really feels like Regexs are the way to go. I've cleaned up a bit without changing my original approach, I don't *think* I can eliminate more for loops, but I don't want to spend more time on this now
+
+## Day 4
+Let's be honest, I could've used some regexs again, but regular ol' string comprehension is perfectly cromulent in this application. Nice and straightforward one today.
