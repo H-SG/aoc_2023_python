@@ -39,8 +39,8 @@ for line in lines:
 
     current_card: Card = Card(
         card_id, 
-        [int(x) for x in win_num.split(' ') if x != ''],
-        [int(x) for x in card_num.split(' ') if x != '']
+        [int(x) for x in win_num.split()],
+        [int(x) for x in card_num.split()]
     )
     
     total_score += current_card.score_1
