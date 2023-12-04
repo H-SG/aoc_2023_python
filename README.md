@@ -20,3 +20,6 @@ Again it really feels like Regexs are the way to go. I've cleaned up a bit witho
 
 ## Day 4
 Let's be honest, I could've used some regexs again, but regular ol' string comprehension is perfectly cromulent in this application. Nice and straightforward one today.
+
+### Benchmarking
+We got into a bit of a competition at work, so I updated with a max speedy version.
