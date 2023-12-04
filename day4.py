@@ -1,5 +1,8 @@
 from utils import read_to_array
 from dataclasses import dataclass
+import datetime as dt
+
+start: dt.datetime = dt.datetime.now()
 
 @dataclass
 class Card():
@@ -31,8 +34,8 @@ for line in lines:
     else:
         card_dict[card_id] = 1
 
-    win_num: list[str] = line.split(':')[-1].strip().split('|')[0].strip()
-    card_num: list[str] = line.split(':')[-1].strip().split('|')[-1].strip()
+    win_num: str = line.split(':')[-1].strip().split('|')[0].strip()
+    card_num: str = line.split(':')[-1].strip().split('|')[-1].strip()
 
     current_card: Card = Card(
         card_id, 
@@ -50,3 +53,4 @@ for line in lines:
 
 print(f'Day 4 - Part 1: {total_score}')
 print(f'Day 4 - Part 2: {sum(card_dict.values())}')
+print(f'Loading and both solutions took {(dt.datetime.now() - start).total_seconds()} seconds')
