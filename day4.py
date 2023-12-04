@@ -1,51 +1,36 @@
 from utils import read_to_array
-from dataclasses import dataclass
-import datetime as dt
+import time
 
-start: dt.datetime = dt.datetime.now()
-
-@dataclass
-class Card():
-    card_id: int
-    win_num: list[int]
-    card_num: list[int]
-    matches: int = 0
-    score_1: int = 0
-
-    def __post_init__(self) -> None:
-        for num in self.win_num:
-            if num in self.card_num:
-                if self.score_1 == 0:
-                    self.score_1 = 1
-                else:
-                    self.score_1 *= 2
-
-                self.matches += 1
+start: time = time.perf_counter_ns()
 
 card_dict: dict = {}
 
 lines: list[str] = read_to_array('data/day4.txt')
 total_score: int = 0
 for line in lines:
-    card_id: int = int(line.split(':')[0].strip().split(' ')[-1])
+    id_str, num_strs = line.split(':')
+
+    card_id: int = int(id_str.split()[-1])
 
     if card_id in card_dict.keys():
         card_dict[card_id] += 1
     else:
         card_dict[card_id] = 1
 
-    win_num: str = line.split(':')[-1].strip().split('|')[0].strip()
-    card_num: str = line.split(':')[-1].strip().split('|')[-1].strip()
+    win_str, card_str = num_strs.split('|')
+    win_num: list[str] = win_str.split()
+    card_num: list[str] = card_str.split()
 
-    current_card: Card = Card(
-        card_id, 
-        [int(x) for x in win_num.split()],
-        [int(x) for x in card_num.split()]
-    )
+    matches: int = len(set(win_num).intersection(set(card_num)))    
+    current_score: int
+    if matches:
+        current_score = int(2**(matches - 1))
+    else:
+        current_score = 0
     
-    total_score += current_card.score_1
+    total_score += current_score
 
-    for i in range(card_id + 1, card_id + current_card.matches + 1):
+    for i in range(card_id + 1, card_id + matches + 1):
         if i in card_dict.keys():
             card_dict[i] += card_dict[card_id]
         else:
@@ -53,4 +38,4 @@ for line in lines:
 
 print(f'Day 4 - Part 1: {total_score}')
 print(f'Day 4 - Part 2: {sum(card_dict.values())}')
-print(f'Loading and both solutions took {(dt.datetime.now() - start).total_seconds()} seconds')
+print(f'Loading and both solutions took {(time.perf_counter_ns() - start)/1E6:.3f} milliseconds')
