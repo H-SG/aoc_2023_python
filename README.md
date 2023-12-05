@@ -23,3 +23,9 @@ Let's be honest, I could've used some regexs again, but regular ol' string compr
 
 ### Benchmarking
 We got into a bit of a competition at work, so I updated with a max speedy version.
+
+## Day 5
+Part 1 🌞
+Part 2 🌋
+
+SO MANY SLICING ERRORS. I hate this. This was not good for my mental health.
