@@ -1,6 +1,9 @@
 from utils import read_to_array
 from dataclasses import dataclass
 from itertools import batched
+import time
+
+start: time = time.perf_counter_ns()
 
 lines: list[str] = read_to_array('data/day5.txt')
 
@@ -15,15 +18,6 @@ index_strings = [
     "temperature-to-humidity map:",
     "humidity-to-location map:"
 ]
-
-seed_i: int
-seed2soil_i: int
-soil2fert_i: int
-fert2water_i: int
-water2light: int
-light2temp: int
-temp2hum: int
-hum2loc: int
 
 @dataclass
 class GardenMap():
@@ -172,3 +166,4 @@ def get_min_nested_lists(input: list) -> int:
     return min(x if isinstance(x, int) else get_min_nested_lists(x) for x in input)
 
 print(f'Day 5 - Part 2: {get_min_nested_lists(outputs)}')
+print(f'Loading and both solutions took {(time.perf_counter_ns() - start)/1E6:.3f} milliseconds')
