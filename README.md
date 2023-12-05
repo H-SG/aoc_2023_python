@@ -29,3 +29,5 @@ Part 1 🌞
 Part 2 🌋
 
 SO MANY SLICING ERRORS. I hate this. This was not good for my mental health.
+
+Oh, Python3.12 is now the minimum required version due to use of `batched()` from itertools. 
