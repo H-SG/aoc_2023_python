@@ -1,27 +1,27 @@
-from utils import read_to_array
 from  math import sqrt, ceil, floor
 import time
 
 start: time = time.perf_counter_ns()
 
-lines: list[str] = read_to_array('data/day6.txt')
-times: str = lines[0].split(':')[-1]
-distances: str = lines[1].split(':')[-1]
+times: list[int] = [52, 94, 75, 94]
+distances: list[int] = [426, 1374, 1279, 1216]
 
 def get_win_options(time: int, distance_to_beat: int) -> int:
-    t0: float = (time + sqrt((time**2) - 4 * (distance_to_beat + 1))) / 2
-    t1: float = (time - sqrt((time**2) - 4 * (distance_to_beat + 1))) / 2
+    root: float = sqrt((time**2) - 4 * (distance_to_beat + 1))
+    t0: float = (time + root) / 2
+    t1: float = (time - root) / 2
 
-    return abs(ceil(min(t0, t1)) - floor(max(t0, t1))) + 1
+    return floor(t0) - ceil(t1) + 1
 
 win_options: int = 1
-for t, d, in zip(times.split(), distances.split()):    
+for t, d, in zip(times, distances):    
     win_options *= get_win_options(int(t), int(d))
 
-print(f'Day 6 - Part 1: {win_options}')
+big_time: int = int("".join([str(x) for x in times]))
+big_distance: int = int("".join([str(x) for x in distances]))
 
-big_time: int = int(times.replace(' ', ''))
-big_distance: int = int(distances.replace(' ', ''))
+print(win_options)
+print(get_win_options(big_time, big_distance))
 
-print(f'Day 6 - Part 2: {get_win_options(big_time, big_distance)}')
-print(f'Loading and both solutions took {(time.perf_counter_ns() - start)/1E6:.3f} milliseconds')
+end_ns = (time.perf_counter_ns() - start)/1E6
+print(f'Loading and both solutions took {end_ns} milliseconds')
