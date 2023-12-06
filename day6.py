@@ -15,8 +15,8 @@ class BoatRace():
     distance_to_beat: int
 
     def __post_init__(self) -> None:
-        time_1 = (self.time_allowed + sqrt((self.time_allowed**2) - 4 * self.distance_to_beat)) / 2
-        time_2 = (self.time_allowed - sqrt((self.time_allowed**2) - 4 * self.distance_to_beat)) / 2
+        time_1: float = (self.time_allowed + sqrt((self.time_allowed**2) - 4 * self.distance_to_beat)) / 2
+        time_2: float = (self.time_allowed - sqrt((self.time_allowed**2) - 4 * self.distance_to_beat)) / 2
         self.time_range: list[int] = [ceil(min(time_1, time_2)), floor(max(time_1, time_2))]
 
         while self.get_distance(self.time_range[0]) <= self.distance_to_beat:
