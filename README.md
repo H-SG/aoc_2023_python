@@ -34,3 +34,6 @@ Oh, Python3.12 is now the minimum required version due to use of `batched()` fro
 
 ## Day 6
 What kinda rollercoaster are we on, this was nice and easy.
+
+## Day 7
+Not hard, but lot's of edge cases, and honestly it looks a bit ugly.

@@ -16,18 +16,39 @@ class Hand():
     losses: int = 0
 
     def __post_init__(self) -> None:
+        self.original_cards = deepcopy(self.cards)
         self.type = self.get_type(self.cards)
-        self.card_strength: list[int] =  self.get_strength(self.cards)   
+        self.card_strength: list[int] =  self.get_hand_strength(self.cards)   
 
     def get_alt_score_hand(self) -> Hand:
         new_hand = deepcopy(self)
+
+        unique_cards: list[str] = list(set(new_hand.cards))
+        unique_cards_counts: list[int] = [new_hand.cards.count(x) for x in unique_cards]
 
         for i, s in enumerate(new_hand.card_strength):
             if s == 11:
                 new_hand.card_strength[i] = 1
 
-        strongest_card_score: int = max(new_hand.card_strength)
-        strongest_card: str
+        valid_unique_cards: list[int] = []
+        valid_unique_cards_counts: list[int] = []
+        for c, n in zip(unique_cards, unique_cards_counts):
+            if c == 'J':
+                continue
+
+            valid_unique_cards.append(c)
+            valid_unique_cards_counts.append(n)
+
+        if len(valid_unique_cards_counts):
+            max_cards = max(valid_unique_cards_counts)
+        else:
+            max_cards = 0
+
+        strongest_card_score: int = 1
+        for c, n in zip(valid_unique_cards, valid_unique_cards_counts):
+            if n == max_cards:
+                strongest_card_score = max(strongest_card_score, self.get_card_strength(c))
+        
         match strongest_card_score:
             case 14:
                 strongest_card = 'A'
@@ -76,25 +97,31 @@ class Hand():
             
         raise ValueError()
 
-    def get_strength(self, cards: list[str]) -> list[int]:
+    def get_hand_strength(self, cards: list[str]) -> list[int]:
         card_strength: list[int] = []
 
         for card in cards:
-            match card:
-                case 'A':
-                    card_strength.append(14)
-                case 'K':
-                    card_strength.append(13)
-                case 'Q':
-                    card_strength.append(12)
-                case 'J':
-                    card_strength.append(11)
-                case 'T':
-                    card_strength.append(10)
-                case val:
-                    card_strength.append(int(val))
+            card_strength.append(self.get_card_strength(card))
 
         return card_strength
+    
+    def get_card_strength(self, card: str, alt_score: bool = False) -> int:
+        match card:
+                case 'A':
+                    return 14
+                case 'K':
+                    return 13
+                case 'Q':
+                    return 12
+                case 'J':
+                    if alt_score:
+                        return 1
+                    else:
+                        return 11
+                case 'T':
+                    return 10
+                case val:
+                    return int(val)
 
     def check_win(self, hand: Hand) -> bool:
         for c, h in zip(self.card_strength, hand.card_strength):
@@ -143,13 +170,11 @@ def get_winnings(hands_dict: dict) -> int:
 
         for hand in hands:
             hand.rank = max_hands_score - hand.losses
-            if hand.rank == 123:
-                pass
             total_winnings += hand.rank * hand.bet
 
         current_rank = max_hands_score + 1
         
     return total_winnings
 
-print(get_winnings(hand_dict))
-print(get_winnings(alt_hand_dict))
+print(f'Day 7 - Part 1: {get_winnings(hand_dict)}')
+print(f'Day 7 - Part 2: {get_winnings(alt_hand_dict)}')
