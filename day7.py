@@ -3,6 +3,9 @@ from utils import read_to_array
 from dataclasses import dataclass
 from copy import deepcopy
 from itertools import combinations
+import time
+
+start: time = time.perf_counter_ns()
 
 lines: list[str] = read_to_array('data/day7.txt')
 
@@ -178,3 +181,4 @@ def get_winnings(hands_dict: dict) -> int:
 
 print(f'Day 7 - Part 1: {get_winnings(hand_dict)}')
 print(f'Day 7 - Part 2: {get_winnings(alt_hand_dict)}')
+print(f'Loading and both solutions took {(time.perf_counter_ns() - start)/1E6:.3f} milliseconds')
