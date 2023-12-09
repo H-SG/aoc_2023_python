@@ -40,3 +40,6 @@ Not hard, but lot's of edge cases, and honestly it looks a bit ugly.
 
 ## Day 8
 This was easy enough, but I'm annoyed by the supposedly smart shortcut one can take for part 2. I feel it's highly dependant on how the input data was engineered rather than being a general solution. So it's more enforced luck rather than algorithmic chops. It's not the first time they've had this sort of solution on AoC, but it just feels extra contrived this time.
+
+## Day 9
+Today was pretty trivial, even part 2 was only mildly tricksy.
