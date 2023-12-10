@@ -43,3 +43,6 @@ This was easy enough, but I'm annoyed by the supposedly smart shortcut one can t
 
 ## Day 9
 Today was pretty trivial, even part 2 was only mildly tricksy.
+
+## Day 10
+First day where I really had no idea how to approach part 2 and had to do some research, this is usually the beginning of the end for AoC for me. Regardless, learned a pretty neat new algorithm.
