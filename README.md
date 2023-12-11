@@ -46,3 +46,6 @@ Today was pretty trivial, even part 2 was only mildly tricksy.
 
 ## Day 10
 First day where I really had no idea how to approach part 2 and had to do some research, this is usually the beginning of the end for AoC for me. Regardless, learned a pretty neat new algorithm.
+
+## Day 11
+I thought this was going to travel into the travelling salesman problem, but no, just embiggenning. Today was probably my quickest yet, could've been quicker though...
